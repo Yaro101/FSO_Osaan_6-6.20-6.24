@@ -5,10 +5,17 @@ const Notification = ({ message, duration }) => {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
+    console.log(`Notification props in component: message=${message}, duration=${duration}`);
     if (message) {
+      console.log(`Notification message from Notification Component: ${message}`)
       setVisible(true);
-      const timer = setTimeout(() => setVisible(false), duration * 1000);
+      const timer = setTimeout(() => {
+        setVisible(false)
+        console.log('Notification hidden Notification Component' )
+      }, duration * 1000);
       return () => clearTimeout(timer);
+    } else {
+      setVisible(false)
     }
   }, [message, duration]);
 
